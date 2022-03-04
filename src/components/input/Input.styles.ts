@@ -10,29 +10,29 @@ export const ViewInput = styled.View`
   justify-content: center;
   width: 80%;
   height: 60;
-`
+`;
 
 export const TextInput = styled.TextInput`
   flex: 1;
   height: 56;
-  background-color: #FFF;
-  border-right-color: #EBEBEB;
+  background-color: #fff;
+  border-right-color: #ebebeb;
   color: #666666;
   font-size: 20;
   border-radius: 20;
   margin-left: 7;
-`
+`;
 export const TouchableOpacity = styled.TouchableOpacity`
-  background-color: #FFF;
+  background-color: #fff;
   justify-content: center;
   align-items: center;
   margin-right: 13;
-`
+`;
 
 export const Search = styled(Icon).attrs({
-  name: "search", 
+  name: 'search',
   size: 40,
 })`
- color:#B2B2B2;
- align-self: center;
-`
+  color: #b2b2b2;
+  align-self: center;
+`;

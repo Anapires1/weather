@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { LottieCloud, TextHeader, ViewHeader } from './Header.styles';
+import React, {Component} from 'react';
+import {LottieCloud, TextHeader, ViewHeader} from './Header.styles';
 
 export function Header() {
   return (
@@ -7,7 +7,7 @@ export function Header() {
       <ViewHeader>
         <TextHeader> Clima </TextHeader>
         <LottieCloud />
-      </ ViewHeader> 
+      </ViewHeader>
     </>
   );
 }
