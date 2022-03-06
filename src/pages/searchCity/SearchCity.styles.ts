@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
 import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
+import LottieView from 'lottie-react-native';
+import search from '../../assets/animations/search.json';
 
-export const ViewHome = styled.View`
+export const ViewSearch = styled.View`
   flex: 1;
-  /* background-color: #fffafa; */
   background-color: #f2f2f2;
 `;
 
@@ -31,6 +32,16 @@ export const TextHome = styled.Text`
 
 export const CardsContainer = styled.View`
   flex: 1;
+  /* background-color: red; */
   margin: ${RFPercentage(3)}px;
   margin-top: ${RFPercentage(2)}px;
+`;
+
+export const LottieSearch = styled(LottieView).attrs({
+  source: search,
+  autoPlay: true,
+  loop: true,
+})`
+  justify-content: center;
+  align-items: center;
 `;

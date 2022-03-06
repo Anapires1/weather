@@ -1,4 +1,12 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {
+  Add,
+  ContainerAdd,
+  SubTitle,
+  TextAdd,
+  Title,
+} from '../../components/card/Card.styles';
 import {CardAdd} from '../../components/card/CardAdd';
 import {CardExtra} from '../../components/card/CardExtra';
 import {Card, CardInformation} from '../../components/card/CardInformation';
@@ -7,44 +15,70 @@ import {GooglePlacesInput, Input} from '../../components/input/Input';
 import {
   TextBold,
   TextHome,
-  ViewHome,
-  ViewText,
+  // ViewHome,
+  // ViewText,
   CardsContainer,
 } from '../searchCity/SearchCity.styles';
-
-interface HomeProps {}
+import {
+  Button,
+  ButtonText,
+  CardsContainerHome,
+  CardsScroll,
+  ViewHome,
+  ViewText,
+} from './Home.styles';
+import {useNavigation} from '@react-navigation/native';
 
 export function Home() {
-  const [cities, setCities] = useState<[]>([]);
+  // const [cities, setCities] = useState<[]>([]);
+  const {cities} = useSelector(state => state.cities);
+
+  const navigation = useNavigation();
 
   return (
-    <>
-      <ViewHome>
-        {/* <Header />
-        <GooglePlacesInput /> */}
-        <ViewText>
-          <TextBold>
-            Parece que você ainda não {'\n'} adicionou uma cidade
-          </TextBold>
-          <TextHome>Tente buscar uma cidade</TextHome>
-        </ViewText>
+    <ViewHome>
+      <Header />
+      {cities.length === 0 ? (
+        <>
+          <ViewText>
+            <TextBold>
+              Parece que você ainda não {'\n'} adicionou uma cidade
+            </TextBold>
+            <TextHome>
+              Aperte o botão abaixo para {'\n'} buscar uma cidade
+            </TextHome>
+          </ViewText>
+          <Button onPress={() => navigation.navigate('SearchCity')}>
+            <ButtonText>+</ButtonText>
+          </Button>
+        </>
+      ) : (
+        <>
+          <CardsScroll>
+            {cities.map(city => (
+              // <ContainerAdd>
+              //   <Title> {city?.structured_formatting?.main_text} </Title>
+              //   <SubTitle> {city?.structured_formatting?.secondary_text} </SubTitle>
+              // </ContainerAdd>
 
-        {/* {city.map(c => (
-        <ContainerAdd>
-          <Title> {c?.structured_formatting?.main_text} </Title>
-          <SubTitle> {c?.structured_formatting?.secondary_text} </SubTitle>
-          <Add>
-            <TextAdd>ADICIONAR</TextAdd>
-          </Add>
-        </ContainerAdd>
-      ))} */}
-
-        {/* <CardsContainer>
-          <CardInformation />
-          <CardAdd />
-          <CardExtra />
-        </CardsContainer> */}
-      </ViewHome>
-    </>
+              <CardsContainerHome>
+                <CardInformation />
+              </CardsContainerHome>
+            ))}
+          </CardsScroll>
+          <Button onPress={() => navigation.navigate('SearchCity')}>
+            <ButtonText>+</ButtonText>
+          </Button>
+        </>
+      )}
+    </ViewHome>
   );
+}
+
+{
+  /* <CardsContainer>
+<CardInformation />
+<CardAdd />
+<CardExtra />
+</CardsContainer> */
 }

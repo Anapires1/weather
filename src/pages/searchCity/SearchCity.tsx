@@ -11,7 +11,12 @@ import {
   ViewHome,
   ViewText,
   CardsContainer,
+  LottieSearch,
+  ViewSearch,
 } from './SearchCity.styles';
+import {useDispatch, useSelector} from 'react-redux';
+import {CitiesStateProps, setCities} from '../../store/redux/citiesSlice';
+import {useNavigation} from '@react-navigation/native';
 
 export interface SearchCityProps {
   structured_formatting: {
@@ -22,17 +27,23 @@ export interface SearchCityProps {
 
 export function SearchCity() {
   const [city, setCity] = useState<SearchCityProps>({} as SearchCityProps);
+  const dispatch = useDispatch();
+  const {cities} = useSelector((state: CitiesStateProps) => state.cities);
+
+  const navigation = useNavigation();
 
   function handleNewCity(data: SearchCityProps) {
     setCity(data);
-    console.log(data);
+    // console.log(data);
     handleLatLong(data);
+    // navigation.navigate('Home');
+    // dispatch(setCities(data));
   }
 
-  function handleLatLong() {
+  function handleLatLong(data: SearchCityProps) {
     Geocoder.init('AIzaSyATpNVxrTmLmxLaMwyNIb4NGTKcoDHJwfk');
 
-    Geocoder.from('Colosseum')
+    Geocoder.from(data.structured_formatting.main_text)
       .then(json => {
         var location = json.results[0].geometry.location;
         console.log('location pf', location);
@@ -42,16 +53,16 @@ export function SearchCity() {
 
   return (
     <>
-      <ViewHome>
+      <ViewSearch>
         <Header />
         <GooglePlacesInput handleSelect={handleNewCity} />
         {Object.keys(city).length === 0 ? (
-          <ViewText>
-            <TextBold>
-              Parece que você ainda não {'\n'} adicionou uma cidade
-            </TextBold>
-            <TextHome>Tente buscar uma cidade</TextHome>
-          </ViewText>
+          <>
+            {/* <LottieSearch /> */}
+            <ViewText>
+              <TextBold>Busque uma cidade</TextBold>
+            </ViewText>
+          </>
         ) : (
           <CardsContainer>
             <CardAdd city={city} />
@@ -63,7 +74,7 @@ export function SearchCity() {
           <CardAdd />
           <CardExtra />
         </CardsContainer> */}
-      </ViewHome>
+      </ViewSearch>
     </>
   );
 }
