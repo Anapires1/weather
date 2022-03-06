@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TypedUseSelectorHook, useSelector} from 'react-redux';
 import {
   Add,
@@ -29,10 +29,9 @@ import {
 } from './Home.styles';
 import {useNavigation} from '@react-navigation/native';
 import {CitiesStateProps} from '../../store/redux/citiesSlice';
+import {AsyncStorage} from 'react-native';
 
 export function Home() {
-  // const [cities, setCities] = useState<[]>([]);
-
   const {cities} = useSelector<TypedUseSelectorHook<CitiesStateProps>>(
     state => state.cities,
   );
@@ -59,16 +58,9 @@ export function Home() {
       ) : (
         <>
           <CardsScroll>
-            {cities.map(city => (
-              // <ContainerAdd>
-              //   <Title> {city?.structured_formatting?.main_text} </Title>
-              //   <SubTitle> {city?.structured_formatting?.secondary_text} </SubTitle>
-              // </ContainerAdd>
-
-              <CardsContainerHome>
-                <CardInformation />
-              </CardsContainerHome>
-            ))}
+            <CardsContainerHome>
+              <CardInformation />
+            </CardsContainerHome>
           </CardsScroll>
           <Button onPress={() => navigation.navigate('SearchCity')}>
             <ButtonText>+</ButtonText>

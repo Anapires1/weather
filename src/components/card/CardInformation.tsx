@@ -1,5 +1,6 @@
-import {Text, View} from 'react-native';
-import React, {Component} from 'react';
+import {AsyncStorage, Text, View} from 'react-native';
+import React, {Component, useEffect, useState} from 'react';
+import Icon from 'react-native-vector-icons/EvilIcons';
 import {
   Container,
   Title,
@@ -28,6 +29,22 @@ export function CardInformation() {
     state => state.cities,
   );
   const navigation = useNavigation();
+  // const [cidades, setCidades] = useState<CitiesStateProps>(async () => {
+  //   const saveCities = await AsyncStorage.getItem('@cities');
+
+  //   if (saveCities) {
+  //     return JSON.parse(saveCities);
+  //   }
+
+  //   return cities;
+  // });
+
+  // useEffect(() => {
+  //   async function saveCities() {
+  //     await AsyncStorage.setItem('@cities', JSON.stringify(cities));
+  //   }
+  //   saveCities();
+  // }, [cities]);
 
   function handleClearCity(id) {
     console.log('koookok');
@@ -55,7 +72,7 @@ export function CardInformation() {
               <Variation> 14º - 28º </Variation>
             </ViewText>
             <Clear onPress={() => handleClearCity(city?.place_id)}>
-              <TextClear>oi</TextClear>
+              <TextClear>🗑️</TextClear>
             </Clear>
           </ViewCard>
         </Container>

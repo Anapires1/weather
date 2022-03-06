@@ -1,18 +1,10 @@
 import axios from 'axios';
 
-import {OPEN_WEATHER_MAP_APP_ID} from 'react-native-dotenv';
-
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5/',
+  params: {
+    appid: '5e3a728896ac5d08c92a18e55cb13c5c',
+    lang: 'pt_br',
+    units: 'metric',
+  },
 });
-
-api.interceptors.request.use(config => {
-  config.params = config.params || {};
-
-  config.params.APPID = OPEN_WEATHER_MAP_APP_ID;
-  config.params.units = config.params.units || 'metric';
-
-  return config;
-});
-
-export default api;

@@ -29,16 +29,12 @@ export interface SearchCityProps {
 export function SearchCity() {
   const [city, setCity] = useState<SearchCityProps>({} as SearchCityProps);
   const dispatch = useDispatch();
-  const {cities} = useSelector((state: CitiesStateProps) => state.cities);
 
   const navigation = useNavigation();
 
   function handleNewCity(data: SearchCityProps) {
     setCity(data);
-    // console.log(data);
     handleLatLong(data);
-    // navigation.navigate('Home');
-    // dispatch(setCities(data));
   }
 
   function handleLatLong(data: SearchCityProps) {
@@ -59,10 +55,10 @@ export function SearchCity() {
         <GooglePlacesInput handleSelect={handleNewCity} />
         {Object.keys(city).length === 0 ? (
           <>
-            {/* <LottieSearch /> */}
             <ViewText>
               <TextBold>Busque uma cidade</TextBold>
             </ViewText>
+            {/* <LottieSearch /> */}
           </>
         ) : (
           <CardsContainer>

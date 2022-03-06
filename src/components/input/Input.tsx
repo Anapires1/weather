@@ -19,14 +19,12 @@ export function GooglePlacesInput({handleSelect}: GooglePlacesInputProps) {
             color: '#B2B2B2',
             borderRadius: 8,
             marginTop: -18,
-            // marginLeft: 30,
-            // marginRight: 30,
           },
           container: {
-            flex: 1,
             marginLeft: 40,
             marginRight: 40,
             borderRadius: 8,
+            maxHeight: 80,
             // backgroundColor: 'green',
           },
         }}

@@ -12,6 +12,7 @@ export const ViewText = styled.View`
   /* margin-top: 120; */
   flex: 1;
   align-items: center;
+  justify-content: center;
   margin-bottom: ${RFPercentage(12)}px;
   /* justify-content: center; */
 `;

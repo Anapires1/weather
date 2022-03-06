@@ -46,7 +46,7 @@ export const Forecast = styled.Text`
   font-weight: bold;
   font-size: 16;
   margin-top: ${RFPercentage(2)}px;
-  margin-left: ${RFPercentage(0.6)}px;
+  /* margin-left: ${RFPercentage(0.6)}px; */
 `;
 
 export const Variation = styled.Text`
@@ -61,8 +61,7 @@ export const Clear = styled.TouchableOpacity`
   color: red;
   font-size: 15;
   margin-top: ${RFPercentage(4)}px;
-  margin-left: ${RFPercentage(30)}px;
-  margin-right: ${RFPercentage(4)}px;
+  margin-right: ${RFPercentage(2)}px;
 `;
 
 export const ViewCard = styled.View`

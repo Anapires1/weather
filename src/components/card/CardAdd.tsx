@@ -13,7 +13,6 @@ import {SearchCityProps} from '../../pages/searchCity/SearchCity';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {setCities} from '../../store/redux/citiesSlice';
-
 interface CardAddProps {
   city: SearchCityProps;
 }
@@ -27,7 +26,14 @@ export function CardAdd({city}: CardAddProps) {
     dispatch(setCities(city));
     console.log('oi', city);
     navigation.navigate('Home');
+    // weather();
   }
+
+  // function weather() {
+  //   api(
+  //     '/weather?lat={lat}&lon={lon}&appid={5e3a728896ac5d08c92a18e55cb13c5c}',
+  //   );
+  // }
 
   return (
     <>
