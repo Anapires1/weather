@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {CardAdd} from '../../components/card/CardAdd';
 import {CardExtra} from '../../components/card/CardExtra';
 import {Card, CardInformation} from '../../components/card/CardInformation';
-import {Header} from '../../components/header/Header';
+import {Header} from '../../components/header/HeaderSearch';
 import {GooglePlacesInput, Input} from '../../components/input/Input';
 import Geocoder from 'react-native-geocoding';
 import {
@@ -23,6 +23,7 @@ export interface SearchCityProps {
     main_text: string;
     secondary_text: string;
   };
+  place_id: string;
 }
 
 export function SearchCity() {

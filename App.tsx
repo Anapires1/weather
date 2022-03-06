@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home} from './src/pages/home/Home';
 import {Provider} from 'react-redux';
 import {store} from './src/store/redux/store';
+import {Information} from './src/pages/information/Information';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ function App() {
           }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="SearchCity" component={SearchCity} />
+          <Stack.Screen name="Information" component={Information} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

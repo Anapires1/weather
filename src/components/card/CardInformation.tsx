@@ -10,16 +10,34 @@ import {
   Favorite,
   ViewCard,
   ViewText,
+  Clear,
+  TextAdd,
+  TextClear,
 } from './Card.styles';
-import {useSelector} from 'react-redux';
+import {TypedUseSelectorHook, useSelector, useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {
+  CitiesStateProps,
+  clearCity,
+  setCities,
+} from '../../store/redux/citiesSlice';
 
 export function CardInformation() {
-  const {cities} = useSelector(state => state.cities);
+  const dispatch = useDispatch();
+  const {cities} = useSelector<TypedUseSelectorHook<CitiesStateProps>>(
+    state => state.cities,
+  );
+  const navigation = useNavigation();
+
+  function handleClearCity(id) {
+    console.log('koookok');
+    dispatch(clearCity(id));
+  }
 
   return (
     <>
       {cities.map(city => (
-        <Container>
+        <Container onPress={() => navigation.navigate('Information')}>
           <ViewCard>
             <ViewText>
               <Title> {city?.structured_formatting?.main_text} </Title>
@@ -36,7 +54,9 @@ export function CardInformation() {
               <Forecast> Chuva fraca </Forecast>
               <Variation> 14º - 28º </Variation>
             </ViewText>
-            <Favorite> 💖</Favorite>
+            <Clear onPress={() => handleClearCity(city?.place_id)}>
+              <TextClear>oi</TextClear>
+            </Clear>
           </ViewCard>
         </Container>
       ))}

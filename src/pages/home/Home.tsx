@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
 import {
   Add,
   ContainerAdd,
@@ -28,10 +28,14 @@ import {
   ViewText,
 } from './Home.styles';
 import {useNavigation} from '@react-navigation/native';
+import {CitiesStateProps} from '../../store/redux/citiesSlice';
 
 export function Home() {
   // const [cities, setCities] = useState<[]>([]);
-  const {cities} = useSelector(state => state.cities);
+
+  const {cities} = useSelector<TypedUseSelectorHook<CitiesStateProps>>(
+    state => state.cities,
+  );
 
   const navigation = useNavigation();
 

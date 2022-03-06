@@ -6,6 +6,11 @@ export const Container = styled.TouchableOpacity`
   border-radius: 5;
   margin-bottom: ${RFPercentage(2)}px;
 `;
+export const TextClear = styled.Text`
+  font-size: 25;
+  color: #000;
+  font-weight: bold;
+`;
 export const ContainerAdd = styled.View`
   background-color: #fff;
   border-radius: 5;
@@ -52,7 +57,7 @@ export const Variation = styled.Text`
   margin-bottom: ${RFPercentage(2)}px;
 `;
 
-export const Favorite = styled.Text`
+export const Clear = styled.TouchableOpacity`
   color: red;
   font-size: 15;
   margin-top: ${RFPercentage(4)}px;

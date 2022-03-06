@@ -15,7 +15,8 @@ const citiesSlice = createSlice({
       return {...state, cities: [...state.cities, payload]};
     },
     clearCity(state, {payload}) {
-      return {...state, cities: []};
+      const newCities = state.cities.filter(city => city.place_id !== payload);
+      return {...state, cities: newCities};
     },
   },
 });
