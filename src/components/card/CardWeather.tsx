@@ -14,6 +14,8 @@ import {
   Clear,
   TextAdd,
   TextClear,
+  ViewContainer,
+  IconTrash,
 } from './Card.styles';
 import {TypedUseSelectorHook, useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -22,57 +24,47 @@ import {
   clearCity,
   setCities,
 } from '../../store/redux/citiesSlice';
+import {StoreStateProps} from '../../store/redux/store';
 
-export function CardInformation() {
+export function CardWeather() {
   const dispatch = useDispatch();
-  const {cities} = useSelector<TypedUseSelectorHook<CitiesStateProps>>(
-    state => state.cities,
-  );
+  const {cities, currentWeather} = useSelector<
+    TypedUseSelectorHook<StoreStateProps>
+  >(state => state.cities);
   const navigation = useNavigation();
-  // const [cidades, setCidades] = useState<CitiesStateProps>(async () => {
-  //   const saveCities = await AsyncStorage.getItem('@cities');
-
-  //   if (saveCities) {
-  //     return JSON.parse(saveCities);
-  //   }
-
-  //   return cities;
-  // });
-
-  // useEffect(() => {
-  //   async function saveCities() {
-  //     await AsyncStorage.setItem('@cities', JSON.stringify(cities));
-  //   }
-  //   saveCities();
-  // }, [cities]);
 
   function handleClearCity(id) {
     console.log('koookok');
     dispatch(clearCity(id));
   }
 
+  console.log('citieslocation', cities.currentLocation);
   return (
     <>
       {cities.map(city => (
         <Container onPress={() => navigation.navigate('Information')}>
           <ViewCard>
-            <ViewText>
-              <Title> {city?.structured_formatting?.main_text} </Title>
-              <SubTitle>
-                {' '}
-                {city?.structured_formatting?.secondary_text}{' '}
-              </SubTitle>
-            </ViewText>
-            <Grau> 18º </Grau>
+            <ViewContainer>
+              <ViewText>
+                <Title>{city?.structured_formatting?.main_text} </Title>
+                <SubTitle>
+                  {' '}
+                  {city?.structured_formatting?.secondary_text}{' '}
+                </SubTitle>
+              </ViewText>
+              <Grau> {city?.currentLocation?.temp}º </Grau>
+            </ViewContainer>
           </ViewCard>
 
           <ViewCard>
             <ViewText>
-              <Forecast> Chuva fraca </Forecast>
-              <Variation> 14º - 28º </Variation>
+              <Forecast>
+                {' '}
+                {city?.currentLocation?.weather[0].description}{' '}
+              </Forecast>
             </ViewText>
             <Clear onPress={() => handleClearCity(city?.place_id)}>
-              <TextClear>🗑️</TextClear>
+              <IconTrash />
             </Clear>
           </ViewCard>
         </Container>

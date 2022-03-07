@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {CardAdd} from '../../components/card/CardAdd';
 import {CardExtra} from '../../components/card/CardExtra';
-import {Card, CardInformation} from '../../components/card/CardInformation';
 import {Header} from '../../components/header/HeaderSearch';
 import {GooglePlacesInput, Input} from '../../components/input/Input';
 import Geocoder from 'react-native-geocoding';
@@ -17,6 +16,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {CitiesStateProps, setCities} from '../../store/redux/citiesSlice';
 import {useNavigation} from '@react-navigation/native';
+import {api} from '../../service/api';
 
 export interface SearchCityProps {
   structured_formatting: {
@@ -24,28 +24,45 @@ export interface SearchCityProps {
     secondary_text: string;
   };
   place_id: string;
+  location: {
+    lat: string;
+    lng: string;
+  };
+  current: {
+    Weather: {
+      temp: string;
+      weather: [
+        {
+          description: string;
+        },
+      ];
+    };
+  };
 }
 
 export function SearchCity() {
   const [city, setCity] = useState<SearchCityProps>({} as SearchCityProps);
+  const [loading, setLoading] = useState(false);
+  const [location, setLocation] = useState('');
   const dispatch = useDispatch();
-
   const navigation = useNavigation();
 
   function handleNewCity(data: SearchCityProps) {
-    setCity(data);
     handleLatLong(data);
   }
 
   function handleLatLong(data: SearchCityProps) {
+    setLoading(true);
     Geocoder.init('AIzaSyATpNVxrTmLmxLaMwyNIb4NGTKcoDHJwfk');
 
     Geocoder.from(data.structured_formatting.main_text)
       .then(json => {
-        var location = json.results[0].geometry.location;
-        console.log('location pf', location);
+        setCity({...data, location: json.results[0].geometry.location});
       })
-      .catch(error => console.warn(error));
+      .catch(error => console.warn(error))
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   return (
@@ -53,24 +70,19 @@ export function SearchCity() {
       <ViewSearch>
         <Header />
         <GooglePlacesInput handleSelect={handleNewCity} />
-        {Object.keys(city).length === 0 ? (
+        {loading ? (
+          <LottieSearch />
+        ) : Object.keys(city).length === 0 ? (
           <>
             <ViewText>
               <TextBold>Busque uma cidade</TextBold>
             </ViewText>
-            {/* <LottieSearch /> */}
           </>
         ) : (
           <CardsContainer>
-            <CardAdd city={city} />
+            <CardAdd city={city} location={location} />
           </CardsContainer>
         )}
-        {/* {!!Object.keys(city).lenght === 0 && <CardAdd city={city} />} */}
-        {/* <CardsContainer>
-          <CardInformation />
-          <CardAdd />
-          <CardExtra />
-        </CardsContainer> */}
       </ViewSearch>
     </>
   );

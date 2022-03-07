@@ -1,9 +1,5 @@
 import React from 'react';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-// import {CardAdd} from '../card/CardAdd';
-
-import {Search, TextInput, TouchableOpacity, ViewInput} from './Input.styles';
-
 interface GooglePlacesInputProps {
   handleSelect: (data) => void;
 }
@@ -38,15 +34,6 @@ export function GooglePlacesInput({handleSelect}: GooglePlacesInputProps) {
           types: ['locality', 'political', 'geocode'],
         }}
       />
-      {/* <ViewInput>
-        <TextInput
-          placeholder="Buscar cidade..."
-          placeholderTextColor="#B2B2B2"
-        />
-        <TouchableOpacity>
-          <Search />
-        </TouchableOpacity>
-      </ViewInput> */}
     </>
   );
 }

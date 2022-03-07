@@ -9,10 +9,13 @@ import {
   TextAdd,
 } from '../card/Card.styles';
 
-import {SearchCityProps} from '../../pages/searchCity/SearchCity';
+import {
+  SearchCityProps,
+  SearchLocationProps,
+} from '../../pages/searchCity/SearchCity';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {setCities} from '../../store/redux/citiesSlice';
+import {setCities, setLocation} from '../../store/redux/citiesSlice';
 interface CardAddProps {
   city: SearchCityProps;
 }
@@ -24,16 +27,10 @@ export function CardAdd({city}: CardAddProps) {
 
   function handleAddNewCity() {
     dispatch(setCities(city));
+    dispatch(setLocation(city.location));
     console.log('oi', city);
-    navigation.navigate('Home');
-    // weather();
+    navigation.navigate('Weather', {params: city});
   }
-
-  // function weather() {
-  //   api(
-  //     '/weather?lat={lat}&lon={lon}&appid={5e3a728896ac5d08c92a18e55cb13c5c}',
-  //   );
-  // }
 
   return (
     <>

@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 export const ViewInformation = styled.View`
   flex: 1;
   /* background-color: #fffafa; */
-  background-color: #f2f2f2;
+  background-color: ${({theme}) => theme.colors.background};
 `;
 
 export const CardsContainerInformation = styled.View`
@@ -15,7 +15,7 @@ export const CardsContainerInformation = styled.View`
 
 export const TextBold = styled.Text`
   font-size: 17;
-  color: #808080;
+  color: ${({theme}) => theme.colors.textSecondary};
 `;
 
 export const ViewText = styled.View`

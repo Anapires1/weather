@@ -6,8 +6,8 @@ import {
   ViewInformation,
   ViewText,
 } from './information.style';
-import {Header} from '../../components/header/HeaderSearch';
 import {CardExtra} from '../../components/card/CardExtra';
+import {Header} from '../../components/header/HeaderSearch';
 
 export function Information() {
   return (

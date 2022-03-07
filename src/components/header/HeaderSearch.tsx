@@ -10,7 +10,7 @@ export function Header() {
     <>
       <ViewHeader>
         <LottieCloud />
-        <ButtonHeader onPress={() => navigation.navigate('Home')}>
+        <ButtonHeader onPress={() => navigation.navigate('Weather')}>
           <TextHeader> X </TextHeader>
         </ButtonHeader>
       </ViewHeader>

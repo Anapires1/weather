@@ -3,8 +3,7 @@ import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 
 export const ViewHome = styled.View`
   flex: 1;
-  /* background-color: #fffafa; */
-  background-color: #f2f2f2;
+  background-color: ${({theme}) => theme.colors.background};
 `;
 
 export const ViewText = styled.View`
@@ -15,7 +14,7 @@ export const ViewText = styled.View`
 `;
 
 export const ButtonText = styled.Text`
-  color: #fff;
+  color: ${({theme}) => theme.colors.text};
   font-size: 20;
   font-weight: bold;
   text-align: center;
@@ -30,7 +29,7 @@ export const Button = styled.TouchableOpacity`
   height: ${RFValue(50)};
   align-items: center;
   justify-content: center;
-  background-color: #add8e6;
+  background-color: ${({theme}) => theme.colors.primary};
 `;
 
 export const CardsContainerHome = styled.View`

@@ -4,14 +4,17 @@ import cloud from '../../assets/animations/cloud.json';
 import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 
 export const ViewHeader = styled.View`
-  background-color: #add8e6;
-  width: ${RFPercentage(100)}%;
+  background-color: ${({theme}) => theme.colors.primary};
+  width: 100%;
   height: ${RFPercentage(25)}px;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
 `;
 
 export const TextHeader = styled.Text`
-  color: #fff;
+  color: ${({theme}) => theme.colors.text};
   font-size: 25;
   font-weight: bold;
   /* justify-content: flex-end; */
@@ -19,10 +22,7 @@ export const TextHeader = styled.Text`
   align-self: flex-end;
 `;
 export const ButtonHeader = styled.TouchableOpacity`
-  /* flex: 1; */
   height: ${RFPercentage(5)}px;
-  width: ${RFValue(300)};
-  /* background-color: red; */
   align-self: center;
   justify-content: center;
 `;
@@ -32,10 +32,7 @@ export const LottieCloud = styled(LottieView).attrs({
   autoPlay: true,
   loop: true,
 })`
-  /* height: 60; */
   height: ${RFPercentage(9)}px;
   flex-direction: row;
   align-self: center;
-  /* margin-left: 100; */
-  margin-left: ${RFValue(4)}; ;
 `;

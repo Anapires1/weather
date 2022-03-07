@@ -5,7 +5,7 @@ import search from '../../assets/animations/search.json';
 
 export const ViewSearch = styled.View`
   flex: 1;
-  background-color: #f2f2f2;
+  background-color: ${({theme}) => theme.colors.background};
 `;
 
 export const ViewText = styled.View`
@@ -20,14 +20,15 @@ export const ViewText = styled.View`
 export const TextBold = styled.Text`
   font-size: 25;
   font-weight: bold;
-  color: #808080;
+  color: ${({theme}) => theme.colors.textSecondary};
   text-align: center;
   line-height: 40;
 `;
 export const TextHome = styled.Text`
+  line-height: 30;
   margin-top: 10;
   font-size: 17;
-  color: #808080;
+  color: ${({theme}) => theme.colors.textSecondary};
   text-align: center;
 `;
 
