@@ -25,6 +25,7 @@ import {
   setCities,
 } from '../../store/redux/citiesSlice';
 import {StoreStateProps} from '../../store/redux/store';
+import {CardExtra} from './CardExtra';
 
 export function CardWeather() {
   const dispatch = useDispatch();
@@ -34,11 +35,9 @@ export function CardWeather() {
   const navigation = useNavigation();
 
   function handleClearCity(id) {
-    console.log('koookok');
     dispatch(clearCity(id));
   }
 
-  console.log('citieslocation', cities.currentLocation);
   return (
     <>
       {cities.map(city => (
@@ -62,6 +61,10 @@ export function CardWeather() {
                 {' '}
                 {city?.currentLocation?.weather[0].description}{' '}
               </Forecast>
+              <Variation>
+                {' '}
+                Humidade: {city?.currentLocation?.humidity}{' '}
+              </Variation>
             </ViewText>
             <Clear onPress={() => handleClearCity(city?.place_id)}>
               <IconTrash />

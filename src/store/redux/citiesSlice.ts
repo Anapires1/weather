@@ -21,16 +21,16 @@ const citiesSlice = createSlice({
       return {...state, selectedLocation: payload};
     },
     setWeather(state, {payload}) {
-      // console.log('AAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHH');
-      console.log('estate cities', state.cities);
-      const newCities = state.cities.map(c => {
-        if (c.place_id === payload.id) {
+      const newCities = state.cities.map(city => {
+        // console.log('cidadezita:', payload.daily);
+        if (city.place_id === payload.id) {
           return {
-            ...c,
+            ...city,
             currentLocation: payload.currentLocation,
+            daily: payload.daily,
           };
         }
-        return {...c};
+        return {...city};
       });
       // let newCities = state.cities;
       // const indexCity = newCities.findIndex(

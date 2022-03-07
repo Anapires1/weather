@@ -17,6 +17,7 @@ import {
   // ViewHome,
   // ViewText,
   CardsContainer,
+  LottieSearch,
 } from '../searchCity/SearchCity.styles';
 import {
   Button,
@@ -34,6 +35,7 @@ import {SearchCityProps} from '../searchCity/SearchCity';
 import {ParamListBase, RouteProp, useRoute} from '@react-navigation/native';
 import {Header} from '../../components/header/Header';
 import {StoreStateProps} from '../../store/redux/store';
+import {LottieLoading} from './weather.style';
 
 interface WeatherProps {
   id: number;
@@ -61,13 +63,11 @@ export function Weather() {
   const [loadingWeather, setLoadingWeather] = useState(true);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  console.log('eita', cities);
 
   useEffect(() => {
     cities.forEach(city => {
       (async (): Promise<void> => {
         try {
-          console.log('CIDADE:', city);
           const results = await api.get<WeatherProps>('/onecall', {
             params: {
               lon: city.location.lng,
@@ -75,34 +75,28 @@ export function Weather() {
               exclude: 'minutely,hourly',
             },
           });
-          console.log(
-            'results current da cidade:',
-            city.structured_formatting.main_text,
-            'current dela:',
-            results.data.current,
-          );
-          // const newWeather = results.data.daily.map(weather => ({
-          //   id: weather.dt,
-          //   date_time: weather.dt,
-          //   temp: Math.ceil(weather.temp.day),
-          //   temp_min: Math.ceil(weather.temp.min),
-          //   temp_max: Math.ceil(weather.temp.max),
-          //   icon: weather.weather[0].icon,
-          //   description: weather.weather[0].description,
-          // }));
-
-          // setWeather({current: results.data.current, daily: newWeather}),
-          // dispatch(
-          //   setWeather({
-          //     place_id: city.place_id,
-          //     currentLocation: results.data.current,
-          //   }),
+          // console.log(
+          //   'results current da cidade:',
+          //   city.structured_formatting.main_text,
+          //   'current dela:',
+          //   results.data.current,
           // );
-
+          // const newWeather =
+          // console.log('tempito', newWeather?.length);
+          // console.log('tempasso', newWeather);
           dispatch(
             setWeather({
               id: city.place_id,
               currentLocation: results.data.current,
+              daily: results.data.daily.map(weather => ({
+                id: weather.dt,
+                date_time: weather.dt,
+                temp: Math.ceil(weather.temp.day),
+                temp_min: Math.ceil(weather.temp.min),
+                temp_max: Math.ceil(weather.temp.max),
+                icon: weather.weather[0].icon,
+                description: weather.weather[0].description,
+              })),
             }),
           );
         } catch {
@@ -128,17 +122,21 @@ export function Weather() {
   return (
     <ViewHome>
       <Header />
-      {cities.length === 0 && navigation.navigate('Home')}
-      <>
-        <CardsScroll>
-          <CardsContainerHome>
-            <CardWeather />
-          </CardsContainerHome>
-        </CardsScroll>
-        <Button onPress={() => navigation.navigate('SearchCity')}>
-          <ButtonText>+</ButtonText>
-        </Button>
-      </>
+      {loadingWeather ? (
+        <LottieLoading />
+      ) : (
+        <>
+          {cities.length === 0 && navigation.navigate('Home')}
+          <CardsScroll>
+            <CardsContainerHome>
+              <CardWeather />
+            </CardsContainerHome>
+          </CardsScroll>
+          <Button onPress={() => navigation.navigate('SearchCity')}>
+            <ButtonText>+</ButtonText>
+          </Button>
+        </>
+      )}
     </ViewHome>
   );
 }

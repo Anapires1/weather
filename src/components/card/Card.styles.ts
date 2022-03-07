@@ -16,7 +16,7 @@ export const TextClear = styled.Text`
 export const IconTrash = styled(Icon).attrs({
   name: 'trash',
 })`
-  font-size: 25;
+  font-size: 40;
 `;
 
 export const ContainerAdd = styled.View`
@@ -61,7 +61,7 @@ export const Forecast = styled.Text`
 export const Variation = styled.Text`
   color: ${({theme}) => theme.colors.title};
   font-size: 16;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin-left: ${RFPercentage(0.6)}px;
   margin-bottom: ${RFPercentage(2)}px;
 `;

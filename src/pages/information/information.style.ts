@@ -7,8 +7,10 @@ export const ViewInformation = styled.View`
   background-color: ${({theme}) => theme.colors.background};
 `;
 
-export const CardsContainerInformation = styled.View`
-  flex: 1;
+export const CardsContainerInformation = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
+  /* flex: 1; */
   margin: ${RFPercentage(3)}px;
   margin-top: ${RFPercentage(2)}px;
 `;

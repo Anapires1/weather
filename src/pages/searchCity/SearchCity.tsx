@@ -38,6 +38,17 @@ export interface SearchCityProps {
       ];
     };
   };
+  daily: [
+    {
+      date_time: string;
+      description: string;
+      icon: string;
+      id: string;
+      temp: string;
+      temp_max: string;
+      temp_min: string;
+    },
+  ];
 }
 
 export function SearchCity() {

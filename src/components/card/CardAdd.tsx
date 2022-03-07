@@ -28,7 +28,6 @@ export function CardAdd({city}: CardAddProps) {
   function handleAddNewCity() {
     dispatch(setCities(city));
     dispatch(setLocation(city.location));
-    console.log('oi', city);
     navigation.navigate('Weather', {params: city});
   }
 
