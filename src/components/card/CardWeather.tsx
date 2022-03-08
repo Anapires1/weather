@@ -1,6 +1,4 @@
-import {AsyncStorage, Text, View} from 'react-native';
-import React, {Component, useEffect, useState} from 'react';
-import Icon from 'react-native-vector-icons/EvilIcons';
+import React from 'react';
 import {
   Container,
   Title,
@@ -8,24 +6,16 @@ import {
   SubTitle,
   Forecast,
   Variation,
-  Favorite,
   ViewCard,
   ViewText,
   Clear,
-  TextAdd,
-  TextClear,
   ViewContainer,
   IconTrash,
 } from './Card.styles';
 import {TypedUseSelectorHook, useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {
-  CitiesStateProps,
-  clearCity,
-  setCities,
-} from '../../store/redux/citiesSlice';
+import {clearCity} from '../../store/redux/citiesSlice';
 import {StoreStateProps} from '../../store/redux/store';
-import {CardExtra} from './CardExtra';
 
 export function CardWeather() {
   const dispatch = useDispatch();
@@ -63,7 +53,7 @@ export function CardWeather() {
               </Forecast>
               <Variation>
                 {' '}
-                Humidade: {city?.currentLocation?.humidity}{' '}
+                humidade: {city?.currentLocation?.humidity}{' '}
               </Variation>
             </ViewText>
             <Clear onPress={() => handleClearCity(city?.place_id)}>

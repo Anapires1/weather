@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Content, LottieCloud, TextHeader, ViewHeader} from './Header.styles';
+import React from 'react';
+import {LottieCloud, TextHeader, ViewHeader} from './Header.styles';
 
 export function Header() {
   return (

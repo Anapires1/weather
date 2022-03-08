@@ -22,7 +22,6 @@ const citiesSlice = createSlice({
     },
     setWeather(state, {payload}) {
       const newCities = state.cities.map(city => {
-        // console.log('cidadezita:', payload.daily);
         if (city.place_id === payload.id) {
           return {
             ...city,
@@ -32,16 +31,6 @@ const citiesSlice = createSlice({
         }
         return {...city};
       });
-      // let newCities = state.cities;
-      // const indexCity = newCities.findIndex(
-      //   city => city.place_id === payload.place_id,
-      // );
-      // newCities[indexCity].currentLocation = payload.currentLocation;
-      // // console.log('new|City', newCities);
-      // return {
-      //   ...state,
-      //   cities: newCities,
-      // };
       return {...state, cities: newCities};
     },
     clearCity(state, {payload}) {

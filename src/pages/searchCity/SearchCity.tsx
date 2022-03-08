@@ -1,22 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {CardAdd} from '../../components/card/CardAdd';
-import {CardExtra} from '../../components/card/CardExtra';
 import {Header} from '../../components/header/HeaderSearch';
-import {GooglePlacesInput, Input} from '../../components/input/Input';
+import {GooglePlacesInput} from '../../components/input/Input';
 import Geocoder from 'react-native-geocoding';
 import {
   TextBold,
-  TextHome,
-  ViewHome,
   ViewText,
   CardsContainer,
   LottieSearch,
   ViewSearch,
 } from './SearchCity.styles';
-import {useDispatch, useSelector} from 'react-redux';
-import {CitiesStateProps, setCities} from '../../store/redux/citiesSlice';
+import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {api} from '../../service/api';
 
 export interface SearchCityProps {
   structured_formatting: {
@@ -55,8 +50,6 @@ export function SearchCity() {
   const [city, setCity] = useState<SearchCityProps>({} as SearchCityProps);
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState('');
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
 
   function handleNewCity(data: SearchCityProps) {
     handleLatLong(data);

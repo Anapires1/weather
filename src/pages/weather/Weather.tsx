@@ -1,38 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {
-  Add,
-  ContainerAdd,
-  SubTitle,
-  TextAdd,
-  Title,
-} from '../../components/card/Card.styles';
-import {CardAdd} from '../../components/card/CardAdd';
-import {CardExtra} from '../../components/card/CardExtra';
 import {CardWeather} from '../../components/card/CardWeather';
-import {GooglePlacesInput, Input} from '../../components/input/Input';
-import {
-  TextBold,
-  TextHome,
-  // ViewHome,
-  // ViewText,
-  CardsContainer,
-  LottieSearch,
-} from '../searchCity/SearchCity.styles';
 import {
   Button,
   ButtonText,
   CardsContainerHome,
   CardsScroll,
   ViewHome,
-  ViewText,
 } from '../home/Home.styles';
 import {useNavigation} from '@react-navigation/native';
-import {CitiesStateProps, setWeather} from '../../store/redux/citiesSlice';
-import {Alert, AsyncStorage} from 'react-native';
+import {setWeather} from '../../store/redux/citiesSlice';
+import {Alert} from 'react-native';
 import {api} from '../../service/api';
 import {SearchCityProps} from '../searchCity/SearchCity';
-import {ParamListBase, RouteProp, useRoute} from '@react-navigation/native';
+import {ParamListBase} from '@react-navigation/native';
 import {Header} from '../../components/header/Header';
 import {StoreStateProps} from '../../store/redux/store';
 import {LottieLoading} from './weather.style';
@@ -54,12 +35,9 @@ interface Params extends ParamListBase {
 }
 
 export function Weather() {
-  const routes = useRoute<RouteProp<Params, 'params'>>();
-  const {cities, selectedLocation, currentWeather, dailyWeather} = useSelector<
-    TypedUseSelectorHook<StoreStateProps>
-  >(state => state.cities);
-  const [citiesWeather, setCitiesWeather] = useState(cities);
-  const [weatherCity, setWeatherCity] = useState<WeatherProps[]>([]);
+  const {cities} = useSelector<TypedUseSelectorHook<StoreStateProps>>(
+    state => state.cities,
+  );
   const [loadingWeather, setLoadingWeather] = useState(true);
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -75,15 +53,6 @@ export function Weather() {
               exclude: 'minutely,hourly',
             },
           });
-          // console.log(
-          //   'results current da cidade:',
-          //   city.structured_formatting.main_text,
-          //   'current dela:',
-          //   results.data.current,
-          // );
-          // const newWeather =
-          // console.log('tempito', newWeather?.length);
-          // console.log('tempasso', newWeather);
           dispatch(
             setWeather({
               id: city.place_id,
@@ -112,13 +81,7 @@ export function Weather() {
       })();
     });
   }, []);
-  // console.log('citiesWeatherLocationCurrent', citiesWeather);
 
-  // const updateWeather = ;
-
-  // }, []);
-  // console.log('daily weather', dailyWeather);
-  // console.log('current weather', currentWeather);
   return (
     <ViewHome>
       <Header />

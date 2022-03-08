@@ -1,12 +1,10 @@
-import {Text, View} from 'react-native';
-import React, {Component} from 'react';
+import React from 'react';
 
 import 'intl';
 
 import 'intl/locale-data/jsonp/pt-BR';
 
 import {
-  Container,
   Title,
   Grau,
   SubTitle,
@@ -14,23 +12,15 @@ import {
   Variation,
   ViewCard,
   ViewText,
+  ContainerInfo,
 } from './Card.styles';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {StoreStateProps} from '../../store/redux/store';
-import {useEffect} from 'react';
 
 export function CardExtra() {
-  const dispatch = useDispatch();
-  const {cities, currentWeather} = useSelector<
-    TypedUseSelectorHook<StoreStateProps>
-  >(state => state.cities);
-
-  useEffect(() => {
-    console.log('cidades: UUUUUUUUUUUUU: ', cities);
-  }, [cities]);
-
-  console.log('teste card extra', cities.daily);
-
+  const {cities} = useSelector<TypedUseSelectorHook<StoreStateProps>>(
+    state => state.cities,
+  );
   function weekDayFormat(index: number) {
     let weekDay = new Date();
     weekDay = weekDay.setDate(weekDay.getDate() + index);
@@ -55,10 +45,8 @@ export function CardExtra() {
     <>
       {cities.map(city =>
         city?.daily.map((day, index) => {
-          console.log('dayli', day);
-
           return (
-            <Container>
+            <ContainerInfo>
               <ViewCard>
                 <ViewText>
                   <Title>{weekDayFormat(index)} </Title>
@@ -76,34 +64,10 @@ export function CardExtra() {
                   </Variation>
                 </ViewText>
               </ViewCard>
-            </Container>
+            </ContainerInfo>
           );
         }),
       )}
     </>
   );
 }
-
-// {cities.map(city => {
-//   // city?.daily?.map(day => {
-//   //   return <Grau> Aqui{day?.temp}aa </Grau>;
-//   // });
-//   return (
-//     <Container>
-//       <ViewCard>
-//         <ViewText>
-//           <Title> Hoje </Title>
-//           <SubTitle> 5 de julho </SubTitle>
-//         </ViewText>
-//         <Grau> Aqui{city?.daily[0]?.temp} </Grau>
-//       </ViewCard>
-
-//       <ViewCard>
-//         <ViewText>
-//           {/* <Forecast> aaa{city?.currentLocation?.lat} </Forecast> */}
-//           <Variation> 14º - 28º </Variation>
-//         </ViewText>
-//       </ViewCard>
-//     </Container>
-//   );
-// })}

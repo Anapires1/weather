@@ -7,6 +7,11 @@ export const Container = styled.TouchableOpacity`
   border-radius: 5;
   margin-bottom: ${RFPercentage(2)}px;
 `;
+export const ContainerInfo = styled.View`
+  background-color: ${({theme}) => theme.colors.backgroundCard};
+  border-radius: 5;
+  margin-bottom: ${RFPercentage(2)}px;
+`;
 export const TextClear = styled.Text`
   font-size: 25;
   color: ${({theme}) => theme.colors.title};

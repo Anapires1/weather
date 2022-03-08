@@ -1,18 +1,7 @@
-import {Text, View} from 'react-native';
-import React, {Component} from 'react';
-import {
-  ContainerAdd,
-  Title,
-  SubTitle,
-  ViewCard,
-  Add,
-  TextAdd,
-} from '../card/Card.styles';
+import React from 'react';
+import {ContainerAdd, Title, SubTitle, Add, TextAdd} from '../card/Card.styles';
 
-import {
-  SearchCityProps,
-  SearchLocationProps,
-} from '../../pages/searchCity/SearchCity';
+import {SearchCityProps} from '../../pages/searchCity/SearchCity';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {setCities, setLocation} from '../../store/redux/citiesSlice';
